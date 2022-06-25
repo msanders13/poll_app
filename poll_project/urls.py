@@ -24,4 +24,6 @@ urlpatterns = [
     path('create/', poll_views.create, name='create'),
     path('vote/<poll_id>/', poll_views.vote, name='vote'),
     path('results/<poll_id>/', poll_views.results, name='results'),
+    path('register/', poll_views.register, name='register'),
+    path('login/', poll_views.login, name='login'),
 ]
