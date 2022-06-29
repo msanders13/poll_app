@@ -1,11 +1,14 @@
 {% extends "poll/base.html" %}
-
-{% block content %} 
-
 {% load crispy_forms_tags %}
+{% block title %}Register{% endblock %}
+
+{% block main %} 
+
+
+
 <!--Register--> 
 <div class="container py-5">
-	<h1>Register</h1>
+	<h4>Register</h4>
 	<form method="POST">
 		{% csrf_token %} 
 		{{ register_form|crispy }}                   

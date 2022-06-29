@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login as dj_login, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CreatePollForm, NewUserForm
@@ -62,12 +62,12 @@ def register(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            dj_login(request, user)
             messages.success(request, 'Registration successful')
             return redirect('poll/home.html')
         messages.error(request, 'Unsuccessful registration. Invalid information')
     form = NewUserForm()
-    return render (request, 'poll/register.html')
+    return render (request, template_name='poll/register.html', context={'register_form':form})
 
 def login(request):
 	if request.method == "POST":
@@ -77,7 +77,7 @@ def login(request):
 			password = form.cleaned_data.get('password')
 			user = authenticate(username=username, password=password)
 			if user is not None:
-				login(request, user)
+				dj_login(request, user)
 				messages.info(request, f"You are now logged in as {username}.")
 				return redirect("poll/home.html")
 			else:
