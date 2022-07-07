@@ -25,5 +25,6 @@ urlpatterns = [
     path('vote/<poll_id>/', poll_views.vote, name='vote'),
     path('results/<poll_id>/', poll_views.results, name='results'),
     path('register/', poll_views.register, name='register'),
-    path('login/', poll_views.login, name='login'),
+    path('login/', poll_views.login_result, name='login'),
+    path("logout/", poll_views.logout, name= "logout"),
 ]
